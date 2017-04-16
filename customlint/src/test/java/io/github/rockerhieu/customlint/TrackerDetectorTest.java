@@ -51,9 +51,6 @@ public class TrackerDetectorTest extends LintDetectorTest {
         is("src/io/github/rockerhieu/tracking/analytics/InvalidTrackerAction.java:7: Warning: The action name must be between 2 and 40 characters long and must consist of alphanumberic characters, _, -, and spaces [InvalidTrackerAction]\n"
             + "    new SendEventBuilder().action(\"This Is A Very Looooooooooooooooooooong Action Name\")\n"
             + "                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
-            + "src/io/github/rockerhieu/tracking/analytics/InvalidTrackerAction.java:8: Warning: The action name must be between 2 and 40 characters long and must consist of alphanumberic characters, _, -, and spaces [InvalidTrackerAction]\n"
-            + "                          .action(null)\n"
-            + "                                  ~~~~\n"
-            + "0 errors, 2 warnings\n"));
+            + "0 errors, 1 warnings\n"));
   }
 }
