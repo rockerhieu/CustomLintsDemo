@@ -8,6 +8,7 @@ import com.android.tools.lint.detector.api.Detector;
 import com.android.tools.lint.detector.api.Implementation;
 import com.android.tools.lint.detector.api.Issue;
 import com.android.tools.lint.detector.api.JavaContext;
+import com.android.tools.lint.detector.api.LintUtils;
 import com.android.tools.lint.detector.api.Scope;
 import com.android.tools.lint.detector.api.Severity;
 import com.intellij.psi.JavaElementVisitor;
@@ -36,7 +37,8 @@ public class TrackerDetector extends Detector implements Detector.JavaPsiScanner
 
   public static final Issue INVALID_TRACKER_ACTION_ISSUE =
       Issue.create("InvalidTrackerAction", "Event action must follow some naming conventions",
-          "Event action must be between 2 and 40 characters long and must consist of alphanumberic characters, _, -, or spaces",
+          "Event action must be between 2 and 40 characters long and must consist of "
+              + "alphanumberic characters, _, -, or spaces",
           Category.CORRECTNESS, 6, Severity.WARNING, IMPLEMENTATION);
 
   private static final String TRACKER_CLASS =
@@ -74,9 +76,10 @@ public class TrackerDetector extends Detector implements Detector.JavaPsiScanner
     if (context.isEnabled(INVALID_TRACKER_ACTION_ISSUE)) {
       PsiExpression actionExpression = call.getArgumentList().getExpressions()[0];
       String action = findLiteralValue(actionExpression);
-      if (action == null || !action.matches("[a-zA-Z_\\- ]{2,40}")) {
+      if (action != null && !action.matches("[a-zA-Z_\\- ]{2,40}")) {
         context.report(INVALID_TRACKER_ACTION_ISSUE, call, context.getLocation(actionExpression),
-            "The action name must be between 2 and 40 characters long and must consist of alphanumberic characters, _, -, and spaces");
+            "The action name must be between 2 and 40 characters long and must consist of "
+                + "alphanumberic characters, _, -, and spaces");
       }
     }
   }

@@ -49,6 +49,6 @@ public class SendEventBuilder {
   }
 
   public void send() {
-    // swallow
+    assert action == null || action.matches("[a-zA-Z_\\- ]{2,40}");
   }
 }

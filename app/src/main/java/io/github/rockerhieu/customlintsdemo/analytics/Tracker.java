@@ -5,5 +5,5 @@ package io.github.rockerhieu.customlintsdemo.analytics;
  */
 
 public interface Tracker {
-  void trackButtonClick();
+  void main_helloWorldClicked();
 }
